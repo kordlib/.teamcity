@@ -2,6 +2,7 @@ package dev.kord.build.cache
 
 import dev.kord.build.applyMultiplatformMatrix
 import dev.kord.build.createProject
+import dev.kord.build.publishing.applyPublishingParameters
 import jetbrains.buildServer.configs.kotlin.RelativeId
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 
@@ -16,6 +17,12 @@ val Cache = createProject("cache", "feature/native") {
             gradle {
                 id = "checks"
                 tasks = "testOnCurrentOS"
+                jdkHome = "%env.JDK_11_0%"
+            }
+            gradle {
+                applyPublishingParameters()
+                id = "publish"
+                tasks = "publishForCurrentOs"
                 jdkHome = "%env.JDK_11_0%"
             }
         }
