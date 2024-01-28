@@ -9,6 +9,7 @@ import jetbrains.buildServer.configs.kotlin.buildFeatures.pullRequests
 import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.failureConditions.failOnMetricChange
 import jetbrains.buildServer.configs.kotlin.matrix
+import jetbrains.buildServer.configs.kotlin.projectFeatures.githubIssues
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
@@ -32,6 +33,15 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
                     metric = BuildFailureOnMetric.MetricType.TEST_FAILED_COUNT
                     units = BuildFailureOnMetric.MetricUnit.DEFAULT_UNIT
                     comparison = BuildFailureOnMetric.MetricComparison.MORE
+                    compareTo = build {
+                        buildRule = lastSuccessful()
+                    }
+                }
+                failOnMetricChange {
+                    metric = BuildFailureOnMetric.MetricType.TEST_COUNT
+                    threshold = 10
+                    units = BuildFailureOnMetric.MetricUnit.PERCENTS
+                    comparison = BuildFailureOnMetric.MetricComparison.LESS
                     compareTo = build {
                         buildRule = lastSuccessful()
                     }
@@ -103,6 +113,19 @@ fun createProject(
     return Project {
         this.name = name
         parentId = DslContext.parentProjectId
+
+        features {
+            githubIssues {
+                displayName = "kordlib/$name"
+                repositoryURL = "https://github.com/kordlib/$name"
+                issuesPattern = "#(\\d+)"
+
+                authType = storedToken {
+                    tokenId =
+                        "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:7ca49a71-b885-4a77-a5b8-ccb6108471d1"
+                }
+            }
+        }
 
         vcsRoot(vcsRoot)
         ProjectContext(vcsRoot, this).apply(projectConfigurator)
