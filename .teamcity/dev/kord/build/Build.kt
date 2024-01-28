@@ -19,7 +19,9 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
                 matches("teamcity.agent.os.family", "Linux")
             }
             triggers {
-                vcs { }
+                vcs {
+                    branchFilter = "+:master"
+                }
             }
             vcs {
                 root(vcsRoot)
