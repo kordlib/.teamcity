@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <tools>
+    <default-versions>
+      <tool-version tool-type="TeamCity.csi" id="TeamCity.csi.1.0.0-rc2" />
+    </default-versions>
+  </tools>
+</settings>
+
