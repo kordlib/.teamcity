@@ -6,7 +6,7 @@ import jetbrains.buildServer.configs.kotlin.RelativeId
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
-private const val token = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:4e2cffdf-fd3b-498a-96c1-2e04fe6e28c0"
+private const val token = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:f6e5b12a-e9be-4fa4-a194-76780560b03e"
 
 val GradleTools = createProject("gradle-tools", "main", token) {
     project.params {
@@ -14,7 +14,7 @@ val GradleTools = createProject("gradle-tools", "main", token) {
     }
 
     project.id = RelativeId("GradleTools")
-    addBuildType {
+    addBuildType(customTrigger = true) {
         name = "Build & Push"
         id = childId("build")
 

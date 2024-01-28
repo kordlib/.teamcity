@@ -16,15 +16,17 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
      * Creates a new [RelativeId] with this project's id as its parent.
      */
     fun childId(name: String) = AbsoluteId("${project.id!!.value}_$name")
-    fun addBuildType(additionalConfig: BuildType.() -> Unit) = with(project) {
+    fun addBuildType(customTrigger: Boolean = false, additionalConfig: BuildType.() -> Unit) = with(project) {
         buildType {
-            triggers {
-                vcs {
-                    branchFilter = """
+            if (!customTrigger) {
+                triggers {
+                    vcs {
+                        branchFilter = """
                         |+:master
                         |+:pull/*
                         |+:tags/*
                     """.trimMargin()
+                    }
                 }
             }
             vcs {
