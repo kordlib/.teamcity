@@ -1,5 +1,6 @@
 package dev.kord.build
 
+import dev.kord.build.utils.toCamelCase
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.PullRequests
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
@@ -98,7 +99,7 @@ fun createProject(
     projectConfigurator: ProjectContext.() -> Unit = {}
 ): Project {
     val vcsRoot = GitVcsRoot {
-        id("${name}VcsRoot")
+        id("${name.toCamelCase()}VcsRoot")
         this.name = "kordlib/$name"
         url = "https://github.com/kordlib/$name"
         branch = "refs/heads/$defaultBranch"
