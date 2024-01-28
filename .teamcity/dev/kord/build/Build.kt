@@ -73,7 +73,7 @@ fun createProject(
     projectConfigurator: ProjectContext.() -> Unit = {}
 ): Project {
     val vcsRoot = GitVcsRoot {
-        id("${name}-vcs-root")
+        id("${name}VcsRoot")
         this.name = "kordlib/$name"
         url = "https://github.com/kordlib/$name"
         branch = "refs/heads/$defaultBranch"
