@@ -7,6 +7,8 @@ import jetbrains.buildServer.configs.kotlin.RelativeId
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 
 val Cache = createProject("cache", "feature/native") {
+    project.params.applyPublishingParameters()
+
     project.id = RelativeId("cache")
     addBuildType {
         applyMultiplatformMatrix()
@@ -20,7 +22,6 @@ val Cache = createProject("cache", "feature/native") {
                 jdkHome = "%env.JDK_11_0%"
             }
             gradle {
-                applyPublishingParameters()
                 id = "publish"
                 tasks = "publishForCurrentOs"
                 jdkHome = "%env.JDK_11_0%"
