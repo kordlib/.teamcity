@@ -88,6 +88,7 @@ fun createProject(
         this.name = name
         parentId = DslContext.parentProjectId
 
+        vcsRoot(vcsRoot)
         ProjectContext(vcsRoot, this).apply(projectConfigurator)
     }
 }
