@@ -96,6 +96,7 @@ fun BuildType.applyMultiplatformMatrix() = features {
 fun createProject(
     name: String,
     defaultBranch: String,
+    projectToken: String,
     projectConfigurator: ProjectContext.() -> Unit = {}
 ): Project {
     val vcsRoot = GitVcsRoot {
@@ -109,7 +110,7 @@ fun createProject(
         """.trimIndent()
         authMethod = token {
             userName = "oauth2"
-            tokenId = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:57833e23-d218-4f37-ac17-55edd9393949"
+            tokenId = projectToken
         }
     }
 
@@ -124,8 +125,7 @@ fun createProject(
                 issuesPattern = "#(\\d+)"
 
                 authType = storedToken {
-                    tokenId =
-                        "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:7ca49a71-b885-4a77-a5b8-ccb6108471d1"
+                    tokenId = projectToken
                 }
             }
         }

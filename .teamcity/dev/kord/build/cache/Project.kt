@@ -7,7 +7,9 @@ import jetbrains.buildServer.configs.kotlin.RelativeId
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.buildSteps.qodana
 
-val Cache = createProject("cache", "feature/native") {
+private const val token = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:7ca49a71-b885-4a77-a5b8-ccb6108471d1"
+
+val Cache = createProject("cache", "feature/native", token) {
     project.params.applyPublishingParameters()
 
     project.id = RelativeId("cache")
