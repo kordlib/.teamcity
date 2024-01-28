@@ -13,5 +13,5 @@ fun ParametrizedWithType.applyPublishingParameters() {
     )
 }
 
-private fun ParametrizedWithType.secretEnv(name: String, value: String) =
+fun ParametrizedWithType.secretEnv(name: String, value: String) =
     password("env.$name", value, readOnly = true, display = ParameterDisplay.HIDDEN)

@@ -13,7 +13,7 @@ val Cache = createProject("cache", "feature/native") {
     project.id = RelativeId("cache")
     addBuildType {
         name = "Code Quality"
-        id = RelativeId("qodana")
+        id = childId("qodana")
 
         requirements {
             matches("teamcity.agent.os.family", "Linux")
@@ -31,7 +31,7 @@ val Cache = createProject("cache", "feature/native") {
         applyMultiplatformMatrix()
 
         name = "Build & Push"
-        id = RelativeId("build")
+        id = childId("build")
         steps {
             gradle {
                 id = "checks"

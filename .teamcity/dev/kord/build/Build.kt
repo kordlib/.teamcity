@@ -1,19 +1,20 @@
 package dev.kord.build
 
-import jetbrains.buildServer.configs.kotlin.BuildType
-import jetbrains.buildServer.configs.kotlin.DslContext
-import jetbrains.buildServer.configs.kotlin.Project
+import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.PullRequests
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.pullRequests
 import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.failureConditions.failOnMetricChange
-import jetbrains.buildServer.configs.kotlin.matrix
 import jetbrains.buildServer.configs.kotlin.projectFeatures.githubIssues
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
 data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
+    /**
+     * Creates a new [RelativeId] with this project's id as its parent.
+     */
+    fun childId(name: String) = AbsoluteId("${project.id!!.value}_$name")
     fun addBuildType(additionalConfig: BuildType.() -> Unit) = with(project) {
         buildType {
             triggers {
