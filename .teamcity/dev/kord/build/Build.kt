@@ -87,7 +87,10 @@ fun createProject(
         this.name = "kordlib/$name"
         url = "https://github.com/kordlib/$name"
         branch = "refs/heads/$defaultBranch"
-        branchSpec = "refs/heads/*"
+        branchSpec = """
+            |refs/heads/*
+            |+:refs/pull/(*/merge)
+        """.trimMargin()
         authMethod = token {
             userName = "oauth2"
             tokenId = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:57833e23-d218-4f37-ac17-55edd9393949"
