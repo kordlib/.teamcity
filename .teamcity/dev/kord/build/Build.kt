@@ -14,6 +14,10 @@ import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
     fun addBuildType(additionalConfig: BuildType.() -> Unit) = with(project) {
         buildType {
+            vcs {
+                root(vcsRoot)
+            }
+
             failureConditions {
                 failOnMetricChange {
                     metric = BuildFailureOnMetric.MetricType.TEST_FAILED_COUNT
