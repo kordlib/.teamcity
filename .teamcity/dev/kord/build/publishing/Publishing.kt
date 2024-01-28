@@ -9,7 +9,7 @@ fun ParametrizedWithType.applyPublishingParameters() {
     secretEnv("ORG_GRADLE_PROJECT_signingInMemoryKey", "credentialsJSON:ddba5b0d-4fc1-4e83-b94f-748c53b0f1e0")
     secretEnv(
         "ORG_GRADLE_PROJECT_signingInMemoryKeyPassword",
-        "credentialsJSON:52929ed0-01b0-4025-85d9-5bf69c42cb79"
+        "credentialsJSON:05652fab-9c46-41aa-9688-681a3d26f2d4"
     )
 }
 
