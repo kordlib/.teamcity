@@ -15,6 +15,9 @@ import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
     fun addBuildType(additionalConfig: BuildType.() -> Unit) = with(project) {
         buildType {
+            requirements {
+                matches("teamcity.agent.os.family", "Linux")
+            }
             triggers {
                 vcs { }
             }
