@@ -9,11 +9,15 @@ import jetbrains.buildServer.configs.kotlin.buildFeatures.pullRequests
 import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.failureConditions.failOnMetricChange
 import jetbrains.buildServer.configs.kotlin.matrix
+import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
 data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
     fun addBuildType(additionalConfig: BuildType.() -> Unit) = with(project) {
         buildType {
+            triggers {
+                vcs { }
+            }
             vcs {
                 root(vcsRoot)
             }
