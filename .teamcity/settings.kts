@@ -8,6 +8,10 @@ version = "2023.11"
 project {
     description = "Contains all other projects"
 
+    params {
+        param("env.GIT_BRANCH", "%vcsroot.branch%")
+    }
+
     features {
         githubAppConnection {
             id = "PROJECT_EXT_4"
