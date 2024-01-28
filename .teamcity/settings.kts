@@ -1,3 +1,4 @@
+import dev.kord.build.cache.Cache
 import jetbrains.buildServer.configs.kotlin.project
 import jetbrains.buildServer.configs.kotlin.projectFeatures.githubAppConnection
 import jetbrains.buildServer.configs.kotlin.version
@@ -27,5 +28,6 @@ project {
             preventDependencyCleanup = false
         }
     }
-}
 
+    subProject(Cache)
+}
