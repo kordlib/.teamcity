@@ -6,7 +6,7 @@ on:
             main-branch:
                 type: string
                 required: false
-                default: "refs/heads/master"
+                default: "refs/heads/main"
 
 jobs:
   gradle-validator:
