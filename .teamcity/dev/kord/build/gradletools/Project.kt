@@ -10,7 +10,7 @@ private const val token = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:f
 
 val GradleTools = createProject("gradle-tools", "main", token) {
     project.params {
-        secretEnv("env.GOOGLE_KEY", "credentialsJSON:4b25a972-2a52-4241-8b08-fe0752dabc67")
+        secretEnv("GOOGLE_KEY", "credentialsJSON:4b25a972-2a52-4241-8b08-fe0752dabc67")
     }
 
     project.id = RelativeId("GradleTools")
