@@ -22,7 +22,7 @@ jobs:
         url: ${{ steps.deployment.outputs.page_url }}
     needs: [gradle-validator]
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' && github.ref == inputs.main-branch
+    if: github.ref == inputs.main-branch
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
