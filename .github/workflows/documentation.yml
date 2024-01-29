@@ -1,0 +1,45 @@
+name: Documentation CI
+
+on:
+    workflow_call:
+        inputs:
+            main-branch:
+                type: string
+                required: false
+                default: "master"
+
+jobs:
+  gradle-validator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1  
+  build-job:
+    environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+    needs: [gradle-validator]
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' && github.ref == inputs.main-branch
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+            distribution: 'temurin'
+            java-version: 11
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@3.0.0-rc.1
+      - run: ./gradlew :dokkaHtmlMultiModule
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/dokka/htmlMultiModule
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
