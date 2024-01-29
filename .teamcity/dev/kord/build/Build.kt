@@ -11,7 +11,7 @@ import jetbrains.buildServer.configs.kotlin.projectFeatures.githubIssues
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
-data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
+data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val token: String) {
     /**
      * Creates a new [RelativeId] with this project's id as its parent.
      */
@@ -59,8 +59,7 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
                     publisher = github {
                         githubUrl = "https://api.github.com"
                         authType = storedToken {
-                            tokenId =
-                                "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:7ca49a71-b885-4a77-a5b8-ccb6108471d1"
+                            tokenId = token
                         }
                     }
                 }
@@ -69,8 +68,7 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project) {
                     vcsRootExtId = "${vcsRoot.id}"
                     provider = github {
                         authType = storedToken {
-                            tokenId =
-                                "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:7ca49a71-b885-4a77-a5b8-ccb6108471d1"
+                            tokenId = token
                         }
                         filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
                     }
@@ -133,6 +131,6 @@ fun createProject(
         }
 
         vcsRoot(vcsRoot)
-        ProjectContext(vcsRoot, this).apply(projectConfigurator)
+        ProjectContext(vcsRoot, this, projectToken).apply(projectConfigurator)
     }
 }
