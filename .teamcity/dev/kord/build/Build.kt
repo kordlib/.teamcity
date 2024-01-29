@@ -75,7 +75,7 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
                     }
                 }
                 buildCache {
-                    name = "GradleCache"
+                    name = "${project.name.toCamelCase()}GradleCache"
                     rules = """
                         .konan
                         gradle-home/caches
