@@ -25,7 +25,6 @@ val Cache = createProject("cache", "feature/native", token) {
             qodana {
                 linter = jvm()
                 cloudToken = "credentialsJSON:3a7564f6-e577-4553-a387-80c2686bde05"
-                additionalQodanaArguments = "--baseline .ci/qodana.sarif.json"
             }
         }
     }
