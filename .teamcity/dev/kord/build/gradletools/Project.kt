@@ -20,7 +20,7 @@ val GradleTools = createProject("gradle-tools", "main", token) {
 
         triggers {
             vcs {
-                branchFilter = "main"
+                branchFilter = "+:main"
             }
         }
         steps {
