@@ -39,11 +39,13 @@ val Cache = createProject("cache", "feature/native", token) {
                 id = "checks"
                 tasks = "testOnCurrentOS"
                 jdkHome = "%env.JDK_11_0%"
+                gradleParams = "--gradle-user-home ./gradle-home"
             }
             gradle {
                 id = "publish"
                 tasks = "publishForCurrentOs"
                 jdkHome = "%env.JDK_11_0%"
+                gradleParams = "--gradle-user-home ./gradle-home"
             }
         }
     }

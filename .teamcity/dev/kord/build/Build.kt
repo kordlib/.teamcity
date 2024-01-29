@@ -3,6 +3,7 @@ package dev.kord.build
 import dev.kord.build.utils.toCamelCase
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.PullRequests
+import jetbrains.buildServer.configs.kotlin.buildFeatures.buildCache
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.pullRequests
 import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnMetric
@@ -73,6 +74,17 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
                         filterAuthorRole = PullRequests.GitHubRoleFilter.EVERYBODY
                     }
                 }
+                buildCache {
+                    name = "GradleCache"
+                    rules = """
+                        .konan
+                        gradle-home/caches
+                        gradle-home/wrapper/dists
+                        gradle-home/yarn
+                        buildSrc/build/kotlin
+                        buildSrc/build/kotlin-dsl
+                    """.trimIndent()
+                }
             }
 
             additionalConfig()
@@ -117,6 +129,10 @@ fun createProject(
     return Project {
         this.name = name
         parentId = DslContext.parentProjectId
+
+        params {
+            param("env.KONAN_DATA_DIR", ".konan")
+        }
 
         features {
             githubIssues {
