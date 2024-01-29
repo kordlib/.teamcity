@@ -77,7 +77,7 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
                 buildCache {
                     name = "GradleCache"
                     rules = """
-                        konan-home
+                        .konan
                         gradle-home/caches
                         gradle-home/wrapper/dists
                         gradle-home/yarn
@@ -131,7 +131,7 @@ fun createProject(
         parentId = DslContext.parentProjectId
 
         params {
-            param("env.KONAN_DATA_DIR", "konan-home")
+            param("env.KONAN_DATA_DIR", ".konan")
         }
 
         features {
