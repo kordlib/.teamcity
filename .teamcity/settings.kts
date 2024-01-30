@@ -1,5 +1,6 @@
 import dev.kord.build.cache.Cache
 import dev.kord.build.gradletools.GradleTools
+import dev.kord.build.kord.Kord
 import jetbrains.buildServer.configs.kotlin.project
 import jetbrains.buildServer.configs.kotlin.projectFeatures.githubAppConnection
 import jetbrains.buildServer.configs.kotlin.version
@@ -36,4 +37,5 @@ project {
 
     subProject(Cache)
     subProject(GradleTools)
+    subProject(Kord)
 }
