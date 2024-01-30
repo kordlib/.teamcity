@@ -39,7 +39,8 @@ val Kord = createProject("kord", "main", token) {
                     make
                 fi
                 sudo make install
-                cp -r /usr/local/lib/libcurl* /usr/lib64/
+                sudo cp -r /usr/local/lib/libcurl* /usr/lib64/
+                sudo cp -r /usr/local/include/curl/ /usr/include
             """.trimIndent()
         }
     }
