@@ -5,15 +5,23 @@ import dev.kord.build.applyMultiplatformMatrix
 import jetbrains.buildServer.configs.kotlin.BuildFeatures
 import jetbrains.buildServer.configs.kotlin.BuildSteps
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
+import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 fun ProjectContext.runTestsAndPublishWithGradle(
+    onlyOnBranch: String? = null,
     features: BuildFeatures.() -> Unit = {},
     beforeSteps: BuildSteps.() -> Unit = {}
-) = addBuildType {
+) = addBuildType(onlyOnBranch != null) {
     applyMultiplatformMatrix()
 
     name = "Build & Push"
     id = childId("build")
+
+    triggers {
+        vcs {
+            branchFilter = "|+:$onlyOnBranch"
+        }
+    }
 
     features(features)
     steps {
