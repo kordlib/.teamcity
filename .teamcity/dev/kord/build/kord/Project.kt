@@ -6,8 +6,7 @@ import dev.kord.build.steps.qodana
 import dev.kord.build.steps.runTestsAndPublishWithGradle
 import jetbrains.buildServer.configs.kotlin.RelativeId
 
-// TODO: Generate appropriate token
-private const val token = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:7ca49a71-b885-4a77-a5b8-ccb6108471d1"
+private const val token = "tc_token_id:CID_ead29039499734d5f53ebb99e1e14bf5:-1:14179102-c8b1-4427-82dc-d7ab819ae5d7"
 
 val Kord = createProject("kord", "main", token) {
     project.params.applyPublishingParameters()
