@@ -23,6 +23,7 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
                     vcs {
                         branchFilter = """
                         |+:master
+                        |+:main
                         |+:pull/*
                         |+:tags/*
                     """.trimMargin()
