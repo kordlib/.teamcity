@@ -105,7 +105,6 @@ fun createProject(
         url = "https://github.com/kordlib/$name"
         branch = "refs/heads/$defaultBranch"
         branchSpec = """
-            |+:refs/pull/*/head
             |+:refs/heads/*
             |+:refs/tags/*
         """.trimIndent()
