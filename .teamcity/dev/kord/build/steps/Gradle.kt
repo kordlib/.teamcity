@@ -4,8 +4,6 @@ import dev.kord.build.ProjectContext
 import dev.kord.build.applyMultiplatformMatrix
 import jetbrains.buildServer.configs.kotlin.BuildFeatures
 import jetbrains.buildServer.configs.kotlin.BuildSteps
-import jetbrains.buildServer.configs.kotlin.BuildType
-import jetbrains.buildServer.configs.kotlin.IdOwner
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
@@ -17,6 +15,7 @@ fun ProjectContext.runTestsAndPublishWithGradle(
     // https://youtrack.jetbrains.com/issue/TW-75263/#focus=Comments-27-9187287.0-0
     val bugfix = addBuildType(onlyOnBranch != null) {
         id = childId("bugfix")
+        name = "Bugfix"
     }
     addBuildType(onlyOnBranch != null) {
         params {
