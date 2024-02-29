@@ -12,7 +12,6 @@ project {
 
     params {
         param("env.GIT_BRANCH", "%vcsroot.branch%")
-        param("env.PR_BRANCH", "%teamcity.pullRequest.source.branch%")
     }
 
     features {
