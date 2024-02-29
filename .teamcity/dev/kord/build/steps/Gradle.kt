@@ -19,7 +19,7 @@ fun ProjectContext.runTestsAndPublishWithGradle(
     }
     addBuildType(onlyOnBranch != null) {
         params {
-            param("env.PR_BRANCH", "%dep.bugfix.teamcity.pullRequest.source.branch%")
+            param("env.PR_BRANCH", "%dep.${bugfix.id}.teamcity.pullRequest.source.branch%")
         }
         dependencies {
             dependency(bugfix) {
