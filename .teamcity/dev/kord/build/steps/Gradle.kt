@@ -23,6 +23,9 @@ fun ProjectContext.runTestsAndPublishWithGradle(
         }
         dependencies {
             dependency(bugfix) {
+                snapshot {
+                    runOnSameAgent = false
+                }
             }
         }
         applyMultiplatformMatrix()
