@@ -103,7 +103,7 @@ fun createProject(
     val vcsRoot = GitVcsRoot {
         id("${name.toCamelCase()}VcsRoot")
         this.name = "kordlib/$name"
-        url = "https://github.com/kordlib/$name"
+        url = "https://github.com/kordlib/$gitName"
         branch = "refs/heads/$defaultBranch"
         branchSpec = """
             |+:refs/heads/*
