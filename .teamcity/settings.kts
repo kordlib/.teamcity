@@ -1,4 +1,5 @@
 import dev.kord.build.cache.Cache
+import dev.kord.build.emoji.Emoji
 import dev.kord.build.gradletools.GradleTools
 import dev.kord.build.kord.Kord
 import jetbrains.buildServer.configs.kotlin.project
@@ -38,4 +39,5 @@ project {
     subProject(Cache)
     subProject(GradleTools)
     subProject(Kord)
+    subProject(Emoji)
 }
