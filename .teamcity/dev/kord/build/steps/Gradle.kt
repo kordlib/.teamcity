@@ -13,6 +13,7 @@ fun ProjectContext.runTestsAndPublishWithGradle(
     beforeSteps: BuildSteps.() -> Unit = {}
 ) {
     // https://youtrack.jetbrains.com/issue/TW-75263/#focus=Comments-27-9187287.0-0
+     // TODO: Remove once TW-86481 is fixed
     val bugfix = addBuildType(onlyOnBranch != null) {
         id = childId("bugfix")
         name = "Bugfix"
