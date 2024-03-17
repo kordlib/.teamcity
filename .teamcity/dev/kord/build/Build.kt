@@ -109,6 +109,7 @@ fun createProject(
             |+:refs/heads/*
             |+:refs/tags/{*}
         """.trimIndent()
+        useTagsAsBranches = true
         authMethod = token {
             userName = "oauth2"
             tokenId = projectToken
