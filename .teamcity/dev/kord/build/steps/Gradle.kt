@@ -4,6 +4,7 @@ import dev.kord.build.ProjectContext
 import dev.kord.build.applyMultiplatformMatrix
 import jetbrains.buildServer.configs.kotlin.BuildFeatures
 import jetbrains.buildServer.configs.kotlin.BuildSteps
+import jetbrains.buildServer.configs.kotlin.ParameterDisplay
 import jetbrains.buildServer.configs.kotlin.buildSteps.gradle
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
@@ -20,7 +21,10 @@ fun ProjectContext.runTestsAndPublishWithGradle(
     }
     addBuildType(onlyOnBranch != null) {
         params {
-            param("env.PR_BRANCH", "%dep.${bugfix.id}.teamcity.pullRequest.source.branch%")
+            text("env.PR_BRANCH", "%dep.${bugfix.id}.teamcity.pullRequest.source.branch%",
+                display = ParameterDisplay.HIDDEN,
+                allowEmpty = true
+            )
         }
         dependencies {
             dependency(bugfix) {

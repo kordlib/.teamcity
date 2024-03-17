@@ -107,7 +107,7 @@ fun createProject(
         branch = "refs/heads/$defaultBranch"
         branchSpec = """
             |+:refs/heads/*
-            |+:refs/tags/*
+            |+:refs/tags/{*}
         """.trimIndent()
         authMethod = token {
             userName = "oauth2"
