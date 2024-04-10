@@ -7,7 +7,9 @@ import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildFeatures.pullRequests
 import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnMetric
 import jetbrains.buildServer.configs.kotlin.failureConditions.failOnMetricChange
+import jetbrains.buildServer.configs.kotlin.projectFeatures.UntrustedBuildsSettings
 import jetbrains.buildServer.configs.kotlin.projectFeatures.githubIssues
+import jetbrains.buildServer.configs.kotlin.projectFeatures.untrustedBuildsSettings
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 
@@ -129,6 +131,13 @@ fun createProject(
                 authType = storedToken {
                     tokenId = projectToken
                 }
+            }
+
+            untrustedBuildsSettings {
+                defaultAction = UntrustedBuildsSettings.DefaultAction.APPROVE
+                enableLog = true
+                timeoutMinutes = 7200 // No idea what best timeout would be, let's specify 5 days for now
+                approvalRules = "group:CODE_REVIEWERS:1"
             }
         }
 
