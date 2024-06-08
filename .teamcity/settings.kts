@@ -6,7 +6,7 @@ import jetbrains.buildServer.configs.kotlin.project
 import jetbrains.buildServer.configs.kotlin.projectFeatures.githubAppConnection
 import jetbrains.buildServer.configs.kotlin.version
 
-version = "2023.11"
+version = "2024.03"
 
 project {
     description = "Contains all other projects"
