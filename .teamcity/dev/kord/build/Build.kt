@@ -24,10 +24,10 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
                 triggers {
                     vcs {
                         branchFilter = """
-                        |+:<default>
-                        |+:pull/*
-                        |+:tags/*
-                    """.trimMargin()
+                        +:<default>
+                        +:pull/*
+                        +:tags/*
+                    """.trimIndent()
                     }
                 }
             }
@@ -108,8 +108,8 @@ fun createProject(
         url = "https://github.com/kordlib/$gitName"
         branch = "refs/heads/$defaultBranch"
         branchSpec = """
-            |+:refs/heads/*
-            |+:refs/tags/{*}
+            +:refs/heads/*
+            +:refs/tags/*
         """.trimIndent()
         useTagsAsBranches = true
         authMethod = token {
