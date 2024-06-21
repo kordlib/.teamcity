@@ -9,6 +9,7 @@ import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 fun ProjectContext.runTestsAndPublishWithGradle(
     onlyOnBranch: String? = null,
+    useSeparateHosts: Boolean = true,
     features: BuildFeatures.() -> Unit = {},
     beforeSteps: BuildSteps.() -> Unit = {}
 ) {
@@ -26,7 +27,9 @@ fun ProjectContext.runTestsAndPublishWithGradle(
                 }
             }
         }
-        applyMultiplatformMatrix()
+        if (useSeparateHosts) {
+            applyMultiplatformMatrix()
+        }
 
         name = "Build & Push"
         id = childId("build")

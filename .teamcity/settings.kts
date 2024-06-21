@@ -1,3 +1,4 @@
+import dev.kord.build.lavalink.Lavalink
 import dev.kord.build.cache.Cache
 import dev.kord.build.emoji.Emoji
 import dev.kord.build.gradletools.GradleTools
@@ -40,4 +41,5 @@ project {
     subProject(GradleTools)
     subProject(Kord)
     subProject(Emoji)
+    subProject(Lavalink)
 }
