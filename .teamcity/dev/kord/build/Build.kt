@@ -107,6 +107,7 @@ fun createProject(
         this.name = "kordlib/$name"
         url = "https://github.com/kordlib/$gitName"
         branch = "refs/heads/$defaultBranch"
+        checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
         branchSpec = """
             +:refs/heads/*
             +:refs/tags/*

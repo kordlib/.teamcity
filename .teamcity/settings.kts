@@ -13,7 +13,7 @@ project {
     description = "Contains all other projects"
 
     params {
-        param("env.GIT_BRANCH", "%vcsroot.branch%")
+//        param("env.GIT_BRANCH", "%vcsroot.branch%")
     }
 
     features {
