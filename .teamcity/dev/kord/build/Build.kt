@@ -107,6 +107,8 @@ fun createProject(
         this.name = "kordlib/$name"
         url = "https://github.com/kordlib/$gitName"
         branch = "refs/heads/$defaultBranch"
+        // This might take longer to clone, however it preserves the entire git info, so the Gradle plugin
+        // can properly fetch the branch
         checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
         branchSpec = """
             +:refs/heads/*

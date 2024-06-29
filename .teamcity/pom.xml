@@ -1,4 +1,6 @@
 <?xml version="1.0"?>
+<!-- Versions come from TeamCity -->
+<!--suppress PackageUpdate -->
 <project>
   <modelVersion>4.0.0</modelVersion>
   <name>_Root Config DSL Script</name>
