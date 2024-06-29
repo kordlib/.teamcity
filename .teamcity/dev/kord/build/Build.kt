@@ -111,8 +111,7 @@ fun createProject(
         // can properly fetch the branch
         checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
         branchSpec = """
-            +:refs/heads/*
-            +:refs/tags/*
+            +:*
         """.trimIndent()
         useTagsAsBranches = true
         authMethod = token {
