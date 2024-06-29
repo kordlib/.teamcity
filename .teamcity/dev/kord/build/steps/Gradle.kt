@@ -21,9 +21,11 @@ fun ProjectContext.runTestsAndPublishWithGradle(
         name = "Build & Push"
         id = childId("build")
 
-        triggers {
-            vcs {
-                branchFilter = "+:$onlyOnBranch"
+        if (onlyOnBranch != null) {
+            triggers {
+                vcs {
+                    branchFilter = "+:$onlyOnBranch"
+                }
             }
         }
 
