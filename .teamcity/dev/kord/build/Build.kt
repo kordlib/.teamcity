@@ -110,7 +110,10 @@ fun createProject(
         // This might take longer to clone, however it preserves the entire git info, so the Gradle plugin
         // can properly fetch the branch
         checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
-        branchSpec = "*"
+        branchSpec = """
+            +:refs/heads/*
+            +:refs/tags/*
+        """.trimIndent()
         useTagsAsBranches = true
         authMethod = token {
             userName = "oauth2"
