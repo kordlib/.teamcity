@@ -28,7 +28,6 @@ env:
   ARTIFACT: webHelp${{ inputs.product }}2-all.zip
   ALGOLIA_ARTIFACT: 'algolia-indexes-${{ inputs.product }}.zip'
   INSTANCE: ${{ inputs.path }}
-  x: ${{secrets.ALGOLIA_KEY}}
   DOCKER_VERSION: '241.16003'
   ALGOLIA_APP_NAME: 'JYGRRNLGJT'
   ALGOLIA_INDEX_NAME: ${{ inputs.algolia-index }}
@@ -41,18 +40,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
+        if: ${{ inputs.build-dokka }}
         uses: actions/checkout@v4
-        if: ${{ inputs.build-dokka }}
       - name: Setup JDK
-        uses: actions/setup-java@v4
         if: ${{ inputs.build-dokka }}
+        uses: actions/setup-java@v4
         with:
           distribution: "temurin"
           java-version: "11"
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
         if: ${{ inputs.build-dokka }}
+        uses: gradle/actions/setup-gradle@v3
       - name: Build Dokka
+        if: ${{ inputs.build-dokka }}
         run: ./gradlew :dokkaHtmlMultiModule
       - name: Upload documentation
         if: ${{ inputs.build-dokka }}
