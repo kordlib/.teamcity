@@ -19,19 +19,20 @@ on:
             version:
                 type: string
                 required: true
-            algolia-token:
-                type: string
-                required: true
+        secrets:
+          algolia-token:
+            required: true 
 
 env:
   PRODUCT: ${{ inputs.path }}
   ARTIFACT: webHelp${{ inputs.product }}2-all.zip
   ALGOLIA_ARTIFACT: 'algolia-indexes-${{ inputs.product }}.zip'
   INSTANCE: ${{ inputs.path }}
+  x: ${{secrets.ALGOLIA_KEY}}
   DOCKER_VERSION: '241.16003'
   ALGOLIA_APP_NAME: 'JYGRRNLGJT'
   ALGOLIA_INDEX_NAME: ${{ inputs.algolia-index }}
-  ALGOLIA_KEY: ${{ inputs.algolia-token }}
+  ALGOLIA_KEY: ${{ secrets.algolia-token }}
   CONFIG_JSON_PRODUCT: ${{ inputs.product }}
   CONFIG_JSON_VERSION: ${{ inputs.version }}
 
