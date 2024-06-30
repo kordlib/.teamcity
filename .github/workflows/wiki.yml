@@ -31,7 +31,7 @@ env:
   DOCKER_VERSION: '241.16003'
   ALGOLIA_APP_NAME: 'JYGRRNLGJT'
   ALGOLIA_INDEX_NAME: ${{ inputs.algolia-index }}
-  ALGOLIA_KEY: ${{ secrets.ALGOLIA_KEY }}
+  ALGOLIA_KEY: ${{ inputs.algolia-token }}
   CONFIG_JSON_PRODUCT: ${{ inputs.product }}
   CONFIG_JSON_VERSION: ${{ inputs.version }}
 
