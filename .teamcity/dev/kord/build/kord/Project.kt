@@ -15,7 +15,7 @@ val Kord = createProject("kord", "main", token) {
 
     project.id = RelativeId("kord")
     qodana("credentialsJSON:bcc43ac3-b408-44d2-bb5a-361fe53b5652")
-    runTestsAndPublishWithGradle(features = {
+    runTestsAndPublishWithGradle(onlyOnBranch = "feature/native", features = {
         buildCache {
             name = "curl_build"
             rules = "curl_build"

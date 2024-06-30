@@ -26,7 +26,7 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
                         branchFilter = """
                         +:<default>
                         +:pull/*
-                        +:tags/*
+                        +:*
                     """.trimIndent()
                     }
                 }
@@ -110,9 +110,7 @@ fun createProject(
         // This might take longer to clone, however it preserves the entire git info, so the Gradle plugin
         // can properly fetch the branch
         checkoutPolicy = GitVcsRoot.AgentCheckoutPolicy.USE_MIRRORS
-        branchSpec = """
-            +:*
-        """.trimIndent()
+        branchSpec = "*"
         useTagsAsBranches = true
         authMethod = token {
             userName = "oauth2"
