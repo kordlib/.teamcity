@@ -27,6 +27,7 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
                         +:<default>
                         +:pull/*
                         +:*
+                        -:comment=--nobuild:**
                     """.trimIndent()
                     }
                 }
