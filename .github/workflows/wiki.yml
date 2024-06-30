@@ -19,8 +19,8 @@ on:
             version:
                 type: string
                 required: true
-        secrets:
             algolia-token:
+                type: string
                 required: true
 
 env:
