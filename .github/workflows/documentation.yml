@@ -10,7 +10,11 @@ on:
             java-version:
                 type: number
                 required: false
-                default: 11                
+                default: 11
+            multi-module:
+                type: boolean
+                required: false
+                default: true                
 
 jobs:
   gradle-validator:
@@ -35,13 +39,13 @@ jobs:
             java-version: ${{ inputs.java-version }}
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - run: ./gradlew :dokkaHtmlMultiModule
+      - run: ./gradlew ${{ inputs.multi-module && ':dokkaHtmlMultiModule' || ':dokkaHtml' }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build/dokka/htmlMultiModule
+          path: build/dokka/${{ inputs.multi-module && 'htmlMultiModule'|| 'html' }}
   deploy:
     environment:
       name: github-pages
