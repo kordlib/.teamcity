@@ -4,6 +4,7 @@
     <default-versions>
       <tool-version tool-type="maven" id="maven3_6" />
       <tool-version tool-type="TeamCity.csi" id="TeamCity.csi.1.0.0-rc2" />
+      <tool-version tool-type="JetBrains.dotCover.CommandLineTools" id="JetBrains.dotCover.CommandLineTools.bundled" />
     </default-versions>
   </tools>
 </settings>
