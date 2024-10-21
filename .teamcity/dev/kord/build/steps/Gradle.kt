@@ -35,12 +35,12 @@ fun ProjectContext.runTestsAndPublishWithGradle(
             gradle {
                 id = "checks"
                 tasks = "testOnCurrentOS"
-                jdkHome = "%env.JDK_11_0%"
+                jdkHome = "%env.JDK_17_0%"
             }
             gradle {
                 id = "publish"
                 tasks = "publishForCurrentOs"
-                jdkHome = "%env.JDK_11_0%"
+                jdkHome = "%env.JDK_17_0%"
             }
         }
     }

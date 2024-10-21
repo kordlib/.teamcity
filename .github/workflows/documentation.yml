@@ -10,7 +10,7 @@ on:
             java-version:
                 type: number
                 required: false
-                default: 11
+                default: 17
             multi-module:
                 type: boolean
                 required: false
@@ -24,7 +24,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Validate Gradle Wrapper
-        uses: gradle/actions/wrapper-validation@v3
+        uses: gradle/actions/wrapper-validation@v4
   build-docs:
     needs: [gradle-validator]
     runs-on: ubuntu-latest
@@ -38,14 +38,14 @@ jobs:
             distribution: 'temurin'
             java-version: ${{ inputs.java-version }}
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-      - run: ./gradlew ${{ inputs.multi-module && ':dokkaHtmlMultiModule' || ':dokkaHtml' }}
+        uses: gradle/actions/setup-gradle@v4
+      - run: ./gradlew :dokkaGeneratePublicationHtml
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: build/dokka/${{ inputs.multi-module && 'htmlMultiModule'|| 'html' }}
+          path: build/dokka/html
   deploy:
     environment:
       name: github-pages
