@@ -53,7 +53,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
       - name: Build Dokka
         if: ${{ inputs.build-dokka }}
-        run: ./gradlew :dokkaHtmlMultiModule
+        run: ./gradlew :dokkaGenerate
       - name: Upload documentation
         if: ${{ inputs.build-dokka }}
         uses: actions/upload-artifact@v4
