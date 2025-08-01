@@ -8,8 +8,8 @@ fun ParametrizedWithType.applyPublishingParameters(
     usePublisherPortal: Boolean = false
 ) {
     if (usePublisherPortal) {
-        secretEnv("ORG_GRADLE_PROJECT_mavenCentralUsername", "credentialsJSON:74b2fea6-b88d-4d1f-a357-b96aa4e6b3e2")
-        secretEnv("ORG_GRADLE_PROJECT_mavenCentralPassword", "credentialsJSON:773c3b77-79dd-43d5-bd82-60d09c88a6c5")
+        secretEnv("ORG_GRADLE_PROJECT_mavenCentralUsername", "credentialsJSON:5d1dd4b3-3455-4eb5-a415-ce8d211f4cf8")
+        secretEnv("ORG_GRADLE_PROJECT_mavenCentralPassword", "credentialsJSON:199eeb02-83c3-46ab-b29b-e459b1effe6c")
     } else if (useS01Credentials) {
         secretEnv("ORG_GRADLE_PROJECT_mavenCentralUsername", "credentialsJSON:ea81b569-741e-409f-bed9-00fc98319845")
         secretEnv("ORG_GRADLE_PROJECT_mavenCentralPassword", "credentialsJSON:0deeae31-c62a-446d-83d8-d978d6f69ad5")
