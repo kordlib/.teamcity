@@ -22,6 +22,9 @@ fun ParametrizedWithType.applyPublishingParameters(
         "ORG_GRADLE_PROJECT_signingInMemoryKeyPassword",
         "credentialsJSON:52929ed0-01b0-4025-85d9-5bf69c42cb79"
     )
+
+    secretEnv("GITHUB_USERNAME", "pat")
+    secretEnv("GITHUB_TOKEN", "credentialsJSON:1625259d-a03d-4df8-b1a8-b64a775cec67")
 }
 
 fun ParametrizedWithType.secretEnv(name: String, value: String) =
