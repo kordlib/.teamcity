@@ -27,7 +27,7 @@ val GradleTools = createProject("gradle-tools", "main", token) {
             gradle {
                 id = "publish"
                 tasks = "publish"
-                jdkHome = "%env.JDK_11_0%"
+                jdkHome = "%env.JDK_17_0%"
             }
         }
     }
