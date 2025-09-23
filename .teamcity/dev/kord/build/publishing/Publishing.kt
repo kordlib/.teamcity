@@ -5,7 +5,7 @@ import jetbrains.buildServer.configs.kotlin.ParametrizedWithType
 
 fun ParametrizedWithType.applyPublishingParameters(
     useS01Credentials: Boolean = false,
-    usePublisherPortal: Boolean = false
+    usePublisherPortal: Boolean = true
 ) {
     if (usePublisherPortal) {
         secretEnv("ORG_GRADLE_PROJECT_mavenCentralUsername", "credentialsJSON:5d1dd4b3-3455-4eb5-a415-ce8d211f4cf8")
