@@ -23,12 +23,12 @@ data class ProjectContext(val vcsRoot: GitVcsRoot, val project: Project, val tok
             if (!customTrigger) {
                 triggers {
                     vcs {
+                        triggerRules = "-:comment=no build: .*:**"
                         branchFilter = """
-                        +:<default>
-                        +:pull/*
-                        +:*
-                        -:comment=--nobuild:**
-                    """.trimIndent()
+                            +:<default>
+                            +:pull/*
+                            +:*
+                        """.trimIndent()
                     }
                 }
             }
