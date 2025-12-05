@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: Checkout repository
         if: ${{ inputs.build-dokka }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Setup JDK
         if: ${{ inputs.build-dokka }}
         uses: actions/setup-java@v5
@@ -50,13 +50,13 @@ jobs:
           java-version: "11"
       - name: Setup Gradle
         if: ${{ inputs.build-dokka }}
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
       - name: Build Dokka
         if: ${{ inputs.build-dokka }}
         run: ./gradlew :dokkaGenerate
       - name: Upload documentation
         if: ${{ inputs.build-dokka }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: dokka
           path: docs/api
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Build docs using Writerside Docker builder
@@ -74,7 +74,7 @@ jobs:
           instance: ${{ env.INSTANCE }}
           artifact: ${{ env.ARTIFACT }}
       - name: Save artifact with build results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: docs
           path: |
@@ -87,7 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: docs
           path: artifacts
@@ -103,21 +103,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: docs
       - name: Download dokka      
         if: ${{ inputs.build-dokka }}
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: dokka
           path: dir/api          
       - name: Unzip artifact
         run: unzip -O UTF-8 -qq '${{ env.ARTIFACT }}' -d dir
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
       - name: Package and upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dir
       - name: Deploy to GitHub Pages
@@ -130,7 +130,7 @@ jobs:
       image: registry.jetbrains.team/p/writerside/builder/algolia-publisher:2.0.32-3
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: docs
       - name: Unzip artifact
